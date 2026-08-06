@@ -541,37 +541,35 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($articles as $article)
-                        <article
-                            class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border hover:-translate-y-2 group">
+                        <article class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1 overflow-hidden flex flex-col">
                             @if ($article->gambar)
-                                <div class="relative overflow-hidden rounded-t-xl">
+                                <div class="relative overflow-hidden h-44 flex-shrink-0">
                                     <img src="{{ Storage::url($article->gambar) }}" alt="{{ $article->judul }}"
-                                        class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                                </div>
-                            @endif
-                            <div class="p-6">
-                                <div class="flex items-center text-sm text-gray-500 mb-3">
-                                    <span
-                                        class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium uppercase">
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                                    <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-green-800 px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wide">
                                         {{ $article->kategori }}
                                     </span>
-                                    <span class="mx-2">•</span>
-                                    <time>{{ $article->created_at->diffForHumans() }}</time>
                                 </div>
-                                <h3
-                                    class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-green-600 transition-colors">
-                                    <a href="{{ route('articles.show', $article->slug) }}">
-                                        {{ $article->judul }}
-                                    </a>
+                            @else
+                                <div class="h-2 bg-gradient-to-r from-green-600 to-green-400 flex-shrink-0"></div>
+                            @endif
+                            <div class="p-5 flex flex-col flex-1">
+                                <time class="text-xs text-gray-400 mb-2 block">{{ $article->created_at->diffForHumans() }}</time>
+                                <h3 class="text-base font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-green-700 transition-colors leading-snug">
+                                    <a href="{{ route('articles.show', $article->slug) }}">{{ $article->judul }}</a>
                                 </h3>
-                                <p class="text-gray-600 line-clamp-3 mb-4">
-                                    {{ Str::limit(strip_tags($article->konten), 120) }}
+                                <p class="text-gray-500 text-sm line-clamp-2 mb-4 flex-1">
+                                    {{ Str::limit(strip_tags($article->konten), 90) }}
                                 </p>
                                 <a href="{{ route('articles.show', $article->slug) }}"
-                                    class="text-green-600 hover:text-green-700 font-semibold transition-colors">
-                                    Baca Selengkapnya →
+                                    class="inline-flex items-center gap-1 text-green-700 hover:text-green-900 text-sm font-semibold transition-colors">
+                                    Baca Selengkapnya
+                                    <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
                                 </a>
                             </div>
                         </article>
@@ -581,133 +579,200 @@
         </div>
     @endif
 
-    {{-- Section: Pengaduan Masyarakat --}}
-    <div class="py-16 bg-orange-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                {{-- Text Content --}}
-                <div>
-                    <div class="inline-block px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-medium mb-4">
-                        Layanan Warga
+    {{-- ============================================================ --}}
+    {{-- Section: Pengaduan Masyarakat (Redesigned)                  --}}
+    {{-- ============================================================ --}}
+    <section class="relative overflow-hidden py-20" style="background-color: #f0f4f0;">
+
+        {{-- Background subtle texture --}}
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-green-100 rounded-full -translate-y-1/2 translate-x-1/3 opacity-50"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-green-200 rounded-full translate-y-1/2 -translate-x-1/3 opacity-30"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+                {{-- ===== Kolom Kiri: Konten Teks ===== --}}
+                <div class="lg:col-span-5">
+
+                    {{-- Label --}}
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-px bg-green-600"></div>
+                        <span class="font-cursive text-xl text-green-700">Suara Anda, Kami Dengar</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        Pengaduan <span class="text-orange-500">Masyarakat</span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+                        Layanan Pengaduan<br><span class="text-green-700">Masyarakat</span>
                     </h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
+
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-1 bg-green-700 rounded-full"></div>
+                        <div class="w-3 h-1 bg-green-400 rounded-full"></div>
+                    </div>
+
+                    <p class="text-gray-600 leading-relaxed mb-8 text-base">
                         Sampaikan pengaduan, saran, atau aspirasi Anda kepada pemerintah Nagari Pematang Panjang.
-                    Kami siap mendengar dan menindaklanjuti.
+                        Kami siap mendengar dan menindaklanjuti setiap laporan dengan serius.
                     </p>
-                    <div class="space-y-3 mb-8">
-                        <div class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+
+                    {{-- Feature list --}}
+                    <div class="space-y-4 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                 </svg>
                             </div>
-                            Boleh disampaikan secara anonim
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Anonim & Aman</p>
+                                <p class="text-gray-500 text-xs mt-0.5">Pengaduan dapat disampaikan tanpa mencantumkan identitas diri</p>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
                             </div>
-                            Bisa lampirkan foto sebagai bukti
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Lampirkan Foto Bukti</p>
+                                <p class="text-gray-500 text-xs mt-0.5">Dukung laporan Anda dengan dokumentasi foto hingga 2MB</p>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-3 text-sm text-gray-600">
-                            <div class="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        <div class="flex items-start gap-4">
+                            <div class="w-9 h-9 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                                 </svg>
                             </div>
-                            Pantau status via nomor tiket
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm">Pantau via Nomor Tiket</p>
+                                <p class="text-gray-500 text-xs mt-0.5">Setiap pengaduan mendapat nomor tiket unik untuk pemantauan</p>
+                            </div>
                         </div>
                     </div>
+
+                    {{-- CTA Buttons --}}
                     <div class="flex flex-col sm:flex-row gap-3">
                         <a href="{{ route('pengaduan.index') }}"
-                            class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-7 py-3.5 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                            class="inline-flex items-center justify-center gap-2 bg-green-700 hover:bg-green-600 text-white px-6 py-3 rounded-2xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
                             </svg>
                             Buat Pengaduan
                         </a>
                         <a href="{{ route('pengaduan.cek') }}"
-                            class="inline-flex items-center border-2 border-orange-400 text-orange-600 px-7 py-3.5 rounded-xl font-semibold hover:bg-orange-100 transition-all duration-300">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                            class="inline-flex items-center justify-center gap-2 bg-white hover:bg-green-50 border border-green-200 hover:border-green-400 text-green-800 px-6 py-3 rounded-2xl font-semibold transition-all duration-300">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
                             Cek Status Tiket
                         </a>
                     </div>
+
                 </div>
 
-                {{-- Ilustrasi / Visual --}}
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-4">
-                        <div class="bg-white rounded-2xl p-5 shadow-md border border-orange-100 hover:shadow-lg transition-shadow">
-                            <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mb-3">
-                                <span class="text-xl">🏗️</span>
-                            </div>
-                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Infrastruktur</h4>
-                            <p class="text-xs text-gray-500">Jalan, jembatan, saluran air</p>
+                {{-- ===== Kolom Kanan: Grid Kategori Visual ===== --}}
+                <div class="lg:col-span-7">
+
+                    {{-- Foto utama dengan overlay modern --}}
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl" style="min-height: 480px;">
+
+                        {{-- Foto --}}
+                        <img src="{{ asset('images/images/kadu.png') }}"
+                            alt="Pengaduan Masyarakat Nagari Pematang Panjang"
+                            class="absolute inset-0 w-full h-full object-cover">
+
+                        {{-- Gradient overlay dari bawah --}}
+                        <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(5,46,22,0.88) 0%, rgba(5,46,22,0.3) 30%, transparent 100%);"></div>
+
+                        {{-- Badge pojok kiri atas --}}
+                        <div class="absolute top-5 left-5">
+                            
                         </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-md border border-orange-100 hover:shadow-lg transition-shadow">
-                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-3">
-                                <span class="text-xl">🏛️</span>
+
+                        {{-- Konten bawah --}}
+                        <div class="absolute bottom-0 left-0 right-0 p-7">
+                            <p class="font-cursive text-2xl text-green-300 mb-1 leading-none">Suara Anda</p>
+                            <h3 class="text-white text-xl font-bold mb-3 leading-snug">
+                                Wujudkan Nagari yang <br>Responsif &amp; Transparan
+                            </h3>
+
+                            {{-- Stat row --}}
+                            <div class="flex items-center gap-5 pt-4 border-t border-white/20">
+                                <div>
+                                    <p class="text-white font-bold text-lg leading-none">Anonim</p>
+                                    <p class="text-white/60 text-xs mt-0.5">Identitas Aman</p>
+                                </div>
+                                <div class="w-px h-8 bg-white/20"></div>
+                                <div>
+                                    <p class="text-white font-bold text-lg leading-none">1×24 Jam</p>
+                                    <p class="text-white/60 text-xs mt-0.5">Waktu Respons</p>
+                                </div>
+                                <div class="w-px h-8 bg-white/20"></div>
+                                <div>
+                                    <p class="text-white font-bold text-lg leading-none">Foto</p>
+                                    <p class="text-white/60 text-xs mt-0.5">Bukti Dilampirkan</p>
+                                </div>
                             </div>
-                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Pelayanan</h4>
-                            <p class="text-xs text-gray-500">Administrasi, layanan warga</p>
                         </div>
+
                     </div>
-                    <div class="space-y-4 mt-6">
-                        <div class="bg-white rounded-2xl p-5 shadow-md border border-orange-100 hover:shadow-lg transition-shadow">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-3">
-                                <span class="text-xl">🌿</span>
-                            </div>
-                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Lingkungan</h4>
-                            <p class="text-xs text-gray-500">Sampah, kebersihan nagari</p>
-                        </div>
-                        <div class="bg-white rounded-2xl p-5 shadow-md border border-orange-100 hover:shadow-lg transition-shadow">
-                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-3">
-                                <span class="text-xl">👥</span>
-                            </div>
-                            <h4 class="font-semibold text-gray-800 text-sm mb-1">Sosial</h4>
-                            <p class="text-xs text-gray-500">Kemasyarakatan & keamanan</p>
-                        </div>
-                    </div>
+
                 </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
-    {{-- Call to Action Section --}}
-    <div class="py-16 bg-gradient-to-r from-green-600 to-green-800 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Jelajahi Lebih Dalam</h2>
-            <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                Temukan keunikan dan potensi Nagari Pematang Panjang melalui peta interaktif dan informasi lengkap
+    {{-- ============================================================ --}}
+    {{-- Call to Action Section — Photo BG Version                   --}}
+    {{-- ============================================================ --}}
+    <section class="relative overflow-hidden" style="min-height: 380px;">
+
+        {{-- Background foto --}}
+        <img src="{{ asset('images/images/kekayaanalam.jpg') }}"
+            alt="Kekayaan Alam Nagari Pematang Panjang"
+            class="absolute inset-0 w-full h-full object-cover object-center">
+
+        {{-- Dark overlay — seperti referensi: gelap merata --}}
+        <div class="absolute inset-0" style="background: rgba(5, 20, 10, 0.72);"></div>
+
+        {{-- Content --}}
+        <div class="relative flex flex-col items-center justify-center text-center px-6 py-24">
+
+            {{-- Label kecil uppercase --}}
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-px bg-white/40"></div>
+                <span class="text-xs font-semibold tracking-[0.3em] text-white/60 uppercase">Nagari Pematang Panjang</span>
+                <div class="w-10 h-px bg-white/40"></div>
+            </div>
+
+            {{-- Judul utama --}}
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 leading-tight tracking-tight">
+                Jelajahi Lebih Dalam
+            </h2>
+
+            {{-- Sub-teks --}}
+            <p class="text-white/70 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+                Temukan keunikan dan potensi Nagari Pematang Panjang melalui peta interaktif wilayah secara lengkap.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="{{ route('peta.index') }}"
-                    class="inline-flex items-center bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    </svg>
-                    Lihat Peta Interaktif
-                </a>
-                <a href="{{ route('informasi.visi-misi') }}"
-                    class="inline-flex items-center border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
-                        </path>
-                    </svg>
-                    Visi & Misi
-                </a>
-            </div>
+
+            {{-- Satu tombol CTA saja --}}
+            <a href="{{ route('peta.index') }}"
+                class="inline-flex items-center gap-2.5 bg-white text-gray-900 hover:bg-green-50 px-8 py-3.5 rounded-2xl font-bold text-sm tracking-wide transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                <svg class="w-4 h-4 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                Lihat Peta Interaktif
+            </a>
+
         </div>
-    </div>
+
+    </section>
 @endsection

@@ -97,6 +97,17 @@ Route::prefix('pengaduan')->name('pengaduan.')->group(function () {
     Route::get('/cek',    [PengaduanController::class, 'cek'])    ->name('cek');
 });
 
+// Statistik Routes
+Route::prefix('statistik')->name('statistik.')->group(function () {
+    Route::get('wilayah',    fn() => view('statistik.wilayah'))   ->name('wilayah');
+    Route::get('pemilih',    fn() => view('statistik.pemilih'))   ->name('pemilih');
+    Route::get('pendidikan', fn() => view('statistik.pendidikan'))->name('pendidikan');
+    Route::get('usia',       fn() => view('statistik.usia'))      ->name('usia');
+    Route::get('perkawinan', fn() => view('statistik.perkawinan'))->name('perkawinan');
+    Route::get('pekerjaan',  fn() => view('statistik.pekerjaan')) ->name('pekerjaan');
+});
+
+
 // ====================================
 // ADMIN ROUTES
 // ====================================

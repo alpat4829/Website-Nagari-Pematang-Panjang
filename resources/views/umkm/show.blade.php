@@ -4,20 +4,11 @@
 @section('title', $umkm->nama)
 
 @section('content')
-    <div class="bg-green-600 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center mb-4">
-                <a href="{{ route('umkm.index') }}" class="text-white hover:text-green-200 mr-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                </a>
-                <h1 class="text-4xl md:text-5xl font-bold">{{ $umkm->nama }}</h1>
-            </div>
-            <p class="text-xl opacity-90">Detail Usaha Mikro Kecil Menengah</p>
-        </div>
-    </div>
+    <x-page-header
+        :title="$umkm->nama"
+        subtitle="Detail Usaha Mikro Kecil Menengah Nagari Pematang Panjang"
+        image="images/images/masyarakatproduktif.jpg"
+    />
 
     <div class="py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

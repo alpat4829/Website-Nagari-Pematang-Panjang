@@ -4,14 +4,11 @@
 @section('title', 'Artikel & Berita')
 
 @section('content')
-    <div class="bg-green-600 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Artikel & Berita</h1>
-                <p class="text-xl opacity-90">Informasi Terkini Seputar Nagari Pematang Panjang</p>
-            </div>
-        </div>
-    </div>
+    <x-page-header
+        title="Artikel & Berita"
+        subtitle="Informasi terkini seputar kegiatan dan perkembangan Nagari Pematang Panjang"
+        image="images/images/masyarakatproduktif.jpg"
+    />
 
     <div class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

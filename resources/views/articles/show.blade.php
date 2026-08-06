@@ -4,25 +4,11 @@
 @section('title', $article->judul)
 
 @section('content')
-    <div class="bg-green-600 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center mb-4">
-                <a href="{{ route('articles.index') }}" class="text-white hover:text-green-200 mr-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                </a>
-                <div>
-                    <span class="bg-green-700 text-green-100 px-3 py-1 rounded text-sm font-medium uppercase">
-                        {{ $article->kategori }}
-                    </span>
-                    <h1 class="text-4xl md:text-5xl font-bold mt-2">{{ $article->judul }}</h1>
-                </div>
-            </div>
-            <p class="text-xl opacity-90">{{ $article->created_at->format('d F Y') }}</p>
-        </div>
-    </div>
+    <x-page-header
+        :title="$article->judul"
+        :subtitle="$article->kategori . ' · ' . $article->created_at->format('d F Y')"
+        image="images/images/masyarakatproduktif.jpg"
+    />
 
     <div class="py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

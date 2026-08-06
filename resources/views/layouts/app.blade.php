@@ -147,7 +147,44 @@
                         class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 {{ request()->routeIs('peta.*') ? 'font-semibold' : '' }}">
                         Peta
                     </a>
+
+                    {{-- Dropdown Statistik --}}
+                    <div class="relative group">
+                        <button
+                            class="nav-dropdown-btn px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-300 {{ request()->routeIs('statistik.*') ? 'font-semibold' : '' }}">
+                            Statistik
+                            <svg class="ml-1 h-4 w-4 transform group-hover:rotate-180 transition-transform duration-200"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-1 z-50">
+                            <div class="py-2">
+                                @foreach ([
+                                    ['statistik.wilayah',    'Statistik Data Wilayah',       'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7', 'bg-amber-100 text-amber-600'],
+                                    ['statistik.pemilih',    'Daftar Pemilih Tetap',          'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z', 'bg-blue-100 text-blue-600'],
+                                    ['statistik.pendidikan', 'Statistik Data Pendidikan',     'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', 'bg-green-100 text-green-600'],
+                                    ['statistik.usia',       'Statistik Data Usia Penduduk',  'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z', 'bg-purple-100 text-purple-600'],
+                                    ['statistik.perkawinan', 'Statistik Data Perkawinan',     'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', 'bg-pink-100 text-pink-600'],
+                                    ['statistik.pekerjaan',  'Statistik Data Pekerjaan',      'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', 'bg-teal-100 text-teal-600'],
+                                ] as [$route, $label, $icon, $iconClass])
+                                    <a href="{{ route($route) }}"
+                                        class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-green-50 hover:text-green-700 transition-colors group/item">
+                                        <span class="w-7 h-7 {{ $iconClass }} rounded-lg flex items-center justify-center flex-shrink-0">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $icon }}"/>
+                                            </svg>
+                                        </span>
+                                        {{ $label }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
@@ -203,8 +240,26 @@
                     & Berita</a>
                 <a href="{{ route('peta.index') }}"
                     class="text-gray-700 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors">Peta</a>
+
+                <div class="space-y-1">
+                    <button class="mobile-dropdown-btn text-gray-700 hover:text-green-600 w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center transition-colors">
+                        Statistik
+                        <svg class="h-4 w-4 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content hidden pl-4 space-y-1">
+                        <a href="{{ route('statistik.wilayah') }}"    class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Wilayah</a>
+                        <a href="{{ route('statistik.pemilih') }}"    class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Daftar Pemilih Tetap</a>
+                        <a href="{{ route('statistik.pendidikan') }}" class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Pendidikan</a>
+                        <a href="{{ route('statistik.usia') }}"       class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Usia Penduduk</a>
+                        <a href="{{ route('statistik.perkawinan') }}" class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Perkawinan</a>
+                        <a href="{{ route('statistik.pekerjaan') }}"  class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Pekerjaan</a>
+                    </div>
+                </div>
             </div>
         </div>
+
     </nav>
 
     <!-- Main Content -->
@@ -219,7 +274,7 @@
                 <!-- Logo dan Info Nagari -->
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-4">
-                        <img src="{{ asset('images/logo-nagari.png') }}" alt="Logo Nagari Pematang Panjang"
+                        <img src="{{ asset('images/pematangpanjangbersih.png') }}" alt="Logo Nagari Pematang Panjang"
                             class="h-12 w-12 mr-4">
                         <div>
                             <span class="text-xl font-bold text-green-400">Nagari Pematang Panjang</span>
@@ -325,9 +380,8 @@
                         <span class="text-gray-400 text-xs mr-2">Developed by</span>
                         <a href="#"
                             class="flex items-center text-gray-300 hover:text-green-400 transition-colors group">
-                            <img src="{{ asset('images/logo-kkn.png') }}" alt="Logo KKN"
-                                class="h-5 w-5 mr-2 group-hover:scale-110 transition-transform">
-                            <span class="text-xs font-medium">KKN Pematang Panjang 2025</span>
+                            
+                            <span class="text-xs font-medium">KKN Pematang Panjang 2026</span>
                         </a>
                     </div>
                 </div>
@@ -339,7 +393,7 @@
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         {{-- Tombol Pengaduan --}}
         <a href="{{ route('pengaduan.index') }}"
-            class="group flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full">
+            class="group flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-full">
             <span class="hidden group-hover:block text-sm font-semibold pl-4 pr-1 whitespace-nowrap transition-all duration-300">
                 Buat Pengaduan
             </span>

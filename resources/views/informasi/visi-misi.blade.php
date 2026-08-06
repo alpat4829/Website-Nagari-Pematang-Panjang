@@ -4,14 +4,11 @@
 @section('title', 'Visi Misi')
 
 @section('content')
-    <div class="bg-green-600 text-white py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">Visi & Misi</h1>
-                <p class="text-xl opacity-90">Arah dan Tujuan Pembangunan Nagari Pematang Panjang</p>
-            </div>
-        </div>
-    </div>
+    <x-page-header
+        title="Visi &amp; Misi"
+        subtitle="Arah dan tujuan pembangunan Nagari Pematang Panjang yang lebih maju"
+        image="images/images/masyarakatproduktif.jpg"
+    />
 
     <div class="py-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

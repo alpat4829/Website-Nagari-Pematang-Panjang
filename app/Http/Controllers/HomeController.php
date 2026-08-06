@@ -24,7 +24,7 @@ class HomeController extends Controller
 
         $recentArticles = Article::where('is_published', true)
             ->latest()
-            ->take(3)
+            ->take(6)
             ->get();
 
         return view('home', [
