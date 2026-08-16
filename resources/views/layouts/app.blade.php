@@ -76,6 +76,7 @@
             color: #9ca3af;
         }
     </style>
+    @stack('head')
 </head>
 
 <body class="font-sans antialiased bg-gray-50" data-page="{{ request()->routeIs('home') ? 'home' : 'other' }}">
@@ -183,6 +184,35 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- Dropdown Kebudayaan --}}
+                    <div class="relative group">
+                        <button
+                            class="nav-dropdown-btn px-3 py-2 rounded-md text-sm font-medium flex items-center transition-all duration-300 {{ request()->routeIs('kebudayaan.*') ? 'font-semibold' : '' }}">
+                            Kebudayaan
+                            <svg class="ml-1 h-4 w-4 transform group-hover:rotate-180 transition-transform duration-200"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-60 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-1 z-50">
+                            <div class="py-2">
+                                <a href="{{ route('kebudayaan.ninik-mamak') }}"
+                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors">
+                                    
+                                    </span>
+                                    Profil Ninik Mamak
+                                </a>
+                                <a href="{{ route('kebudayaan.sejarah-jorong') }}"
+                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors">
+                                   
+                                    Sejarah Jorong
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -255,6 +285,19 @@
                         <a href="{{ route('statistik.usia') }}"       class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Usia Penduduk</a>
                         <a href="{{ route('statistik.perkawinan') }}" class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Perkawinan</a>
                         <a href="{{ route('statistik.pekerjaan') }}"  class="block px-3 py-2 text-sm text-gray-600 hover:text-green-600 transition-colors">Data Pekerjaan</a>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <button class="mobile-dropdown-btn text-gray-700 hover:text-amber-600 w-full text-left px-3 py-2 rounded-md text-base font-medium flex justify-between items-center transition-colors">
+                        Kebudayaan
+                        <svg class="h-4 w-4 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                    <div class="mobile-dropdown-content hidden pl-4 space-y-1">
+                        <a href="{{ route('kebudayaan.ninik-mamak') }}" class="block px-3 py-2 text-sm text-gray-600 hover:text-amber-600 transition-colors">Profil Ninik Mamak</a>
+                        <a href="{{ route('kebudayaan.sejarah-jorong') }}" class="block px-3 py-2 text-sm text-gray-600 hover:text-amber-600 transition-colors">Sejarah Jorong</a>
                     </div>
                 </div>
             </div>

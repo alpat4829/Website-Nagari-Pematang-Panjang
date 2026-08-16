@@ -107,6 +107,12 @@ Route::prefix('statistik')->name('statistik.')->group(function () {
     Route::get('pekerjaan',  fn() => view('statistik.pekerjaan')) ->name('pekerjaan');
 });
 
+// Kebudayaan Routes
+Route::prefix('kebudayaan')->name('kebudayaan.')->group(function () {
+    Route::get('ninik-mamak', fn() => view('kebudayaan.ninik-mamak'))->name('ninik-mamak');
+    Route::get('sejarah-jorong', fn() => view('kebudayaan.sejarah-jorong'))->name('sejarah-jorong');
+});
+
 
 // ====================================
 // ADMIN ROUTES
